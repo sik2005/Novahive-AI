@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Novahive AI Technology | Innovating Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Exo+2:wght@300;400;500;600&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #050d1f;
+    --navy2: #071428;
+    --navy3: #0a1a35;
+    --cyan: #00c8ff;
+    --cyan2: #00e5ff;
+    --blue: #1a6aff;
+    --purple: #7c3aed;
+    --teal: #0ff4c6;
+    --white: #f0f8ff;
+    --grey: #8ab4cc;
+    --card-bg: rgba(10,26,53,0.85);
+    --border: rgba(0,200,255,0.18);
+    --glow: 0 0 30px rgba(0,200,255,0.25);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'Exo 2', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── ANIMATED BACKGROUND ── */
+  .bg-canvas {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background: radial-gradient(ellipse 80% 60% at 10% 20%, rgba(26,106,255,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 40% at 90% 80%, rgba(0,200,255,0.08) 0%, transparent 55%),
+                var(--navy);
+  }
+  .hex-grid {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='69.28'%3E%3Cpath d='M30 0 L60 17.32 L60 51.96 L30 69.28 L0 51.96 L0 17.32Z' fill='none' stroke='rgba(0,200,255,0.05)' stroke-width='0.8'/%3E%3C/svg%3E");
+    background-size: 60px 69.28px;
+    opacity: 0.8;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 0 5%;
+    background: rgba(5,13,31,0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    height: 70px;
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none;
+  }
+  .logo-hex {
+    width: 42px; height: 42px;
+    position: relative; display: flex; align-items: center; justify-content: center;
+  }
+  .logo-hex svg { width: 100%; height: 100%; }
+  .nav-logo-text {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700; font-size: 1rem;
+    letter-spacing: 0.08em;
+  }
+  .nav-logo-text span { color: var(--cyan); }
+  .nav-logo-sub {
+    font-size: 0.58rem; color: var(--grey);
+    letter-spacing: 0.2em; font-family: 'Rajdhani', sans-serif;
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex; gap: 2rem; list-style: none;
+  }
+  .nav-links a {
+    color: var(--grey); text-decoration: none;
+    font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 0.92rem;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    transition: color 0.3s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+    height: 1px; background: var(--cyan);
+    transform: scaleX(0); transition: transform 0.3s;
+  }
+  .nav-links a:hover { color: var(--cyan); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+
+  .nav-cta {
+    background: linear-gradient(135deg, var(--blue), var(--cyan));
+    color: #fff; border: none; padding: 10px 24px;
+    font-family: 'Rajdhani', sans-serif; font-weight: 700;
+    font-size: 0.88rem; letter-spacing: 0.15em; text-transform: uppercase;
+    cursor: pointer; clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    transition: opacity 0.3s;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* ── SECTIONS ── */
+  section { position: relative; z-index: 1; }
+
+  /* ── HERO ── */
+  #home {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 100px 5% 60px;
+    overflow: hidden;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid var(--border);
+    background: rgba(0,200,255,0.06);
+    padding: 6px 18px; margin-bottom: 28px;
+    font-family: 'Rajdhani', sans-serif; font-size: 0.8rem;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan);
+    animation: fadeDown 0.8s ease both;
+  }
+  .badge-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--cyan); box-shadow: 0 0 8px var(--cyan);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  .hero-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2.4rem, 6vw, 5rem);
+    font-weight: 900; line-height: 1.1;
+    letter-spacing: 0.02em;
+    animation: fadeUp 0.9s 0.1s ease both;
+  }
+  .hero-title .line2 { color: var(--cyan); display: block; }
+  .hero-title .accent {
+    background: linear-gradient(90deg, var(--cyan), var(--blue));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+
+  .hero-sub {
+    max-width: 640px; margin: 24px auto 0;
+    font-size: 1.05rem; line-height: 1.75; color: #8ab4cc; font-weight: 300;
+    animation: fadeUp 0.9s 0.25s ease both;
+  }
+
+  .hero-btns {
+    display: flex; gap: 16px; justify-content: center; margin-top: 42px; flex-wrap: wrap;
+    animation: fadeUp 0.9s 0.4s ease both;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--blue) 0%, var(--cyan) 100%);
+    color: #fff; border: none; padding: 15px 36px;
+    font-family: 'Rajdhani', sans-serif; font-weight: 700;
+    font-size: 0.95rem; letter-spacing: 0.12em; text-transform: uppercase;
+    cursor: pointer; clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 0 25px rgba(0,200,255,0.3);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(0,200,255,0.5); }
+
+  .btn-secondary {
+    background: transparent; color: var(--cyan);
+    border: 1px solid var(--cyan); padding: 14px 34px;
+    font-family: 'Rajdhani', sans-serif; font-weight: 600;
+    font-size: 0.95rem; letter-spacing: 0.12em; text-transform: uppercase;
+    cursor: pointer; transition: all 0.3s;
+  }
+  .btn-secondary:hover { background: rgba(0,200,255,0.1); transform: translateY(-2px); }
+
+  /* Stats bar */
+  .hero-stats {
+    display: flex; gap: 60px; justify-content: center; margin-top: 70px;
+    animation: fadeUp 0.9s 0.55s ease both;
+    border-top: 1px solid var(--border); padding-top: 40px;
+    flex-wrap: wrap;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Orbitron', sans-serif; font-size: 2rem; font-weight: 900;
+    background: linear-gradient(90deg, var(--cyan), var(--blue));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .stat-label { color: var(--grey); font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; margin-top: 4px; }
+
+  /* Floating circuit orb */
+  .hero-orb {
+    position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
+    width: 380px; height: 380px; pointer-events: none;
+    animation: float 6s ease-in-out infinite;
+    opacity: 0.9;
+  }
+  @keyframes float { 0%,100%{transform:translateY(-50%) rotate(0deg)} 50%{transform:translateY(calc(-50% - 20px)) rotate(3deg)} }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeDown { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
+
+  /* ── SECTION STYLES ── */
+  .section-header {
+    text-align: center; margin-bottom: 64px;
+  }
+  .section-tag {
+    font-family: 'Rajdhani', sans-serif; font-size: 0.78rem;
+    letter-spacing: 0.3em; text-transform: uppercase; color: var(--cyan);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Orbitron', sans-serif; font-weight: 700;
+    font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+    line-height: 1.2;
+  }
+  .section-title span { color: var(--cyan); }
+  .section-divider {
+    width: 60px; height: 3px; margin: 20px auto 0;
+    background: linear-gradient(90deg, var(--blue), var(--cyan));
+  }
+
+  /* ── ABOUT ── */
+  #about {
+    padding: 110px 5%;
+    background: linear-gradient(180deg, var(--navy) 0%, var(--navy2) 100%);
+  }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 70px;
+    align-items: center; max-width: 1200px; margin: 0 auto;
+  }
+  .about-visual {
+    position: relative; display: flex; align-items: center; justify-content: center;
+  }
+  .about-hex-ring {
+    width: 320px; height: 320px; position: relative;
+    animation: spinSlow 20s linear infinite;
+  }
+  @keyframes spinSlow { to { transform: rotate(360deg); } }
+
+  .about-content h3 {
+    font-family: 'Orbitron', sans-serif; font-size: 0.75rem;
+    letter-spacing: 0.3em; color: var(--cyan); text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .about-content h2 {
+    font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 2rem;
+    line-height: 1.3; margin-bottom: 20px;
+  }
+  .about-content p {
+    color: var(--grey); line-height: 1.85; margin-bottom: 16px; font-size: 0.97rem;
+  }
+  .about-vision-mission {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 30px;
+  }
+  .vm-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    padding: 20px; transition: border-color 0.3s;
+  }
+  .vm-card:hover { border-color: var(--cyan); }
+  .vm-card h4 {
+    font-family: 'Orbitron', sans-serif; font-size: 0.72rem;
+    letter-spacing: 0.2em; color: var(--cyan); text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .vm-card p { color: var(--grey); font-size: 0.88rem; line-height: 1.6; }
+
+  /* ── SERVICES ── */
+  #services {
+    padding: 110px 5%;
+    background: var(--navy3);
+  }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px; max-width: 1200px; margin: 0 auto;
+  }
+  .service-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    padding: 36px 30px;
+    position: relative; overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    cursor: default;
+  }
+  .service-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--blue), var(--cyan));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s;
+  }
+  .service-card:hover { transform: translateY(-6px); border-color: rgba(0,200,255,0.4); box-shadow: var(--glow); }
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .service-icon {
+    width: 56px; height: 56px; margin-bottom: 20px;
+    background: linear-gradient(135deg, rgba(26,106,255,0.2), rgba(0,200,255,0.15));
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+  }
+  .service-card h3 {
+    font-family: 'Orbitron', sans-serif; font-size: 0.95rem;
+    font-weight: 700; margin-bottom: 14px; letter-spacing: 0.05em;
+  }
+  .service-card p { color: var(--grey); font-size: 0.9rem; line-height: 1.75; }
+  .service-num {
+    position: absolute; top: 20px; right: 20px;
+    font-family: 'Orbitron', sans-serif; font-size: 2.5rem;
+    font-weight: 900; color: rgba(0,200,255,0.06); line-height: 1;
+  }
+
+  /* ── WHY US ── */
+  #why {
+    padding: 110px 5%;
+    background: linear-gradient(180deg, var(--navy2) 0%, var(--navy) 100%);
+  }
+  .why-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 50px;
+    max-width: 1200px; margin: 0 auto; align-items: center;
+  }
+  .why-list { display: flex; flex-direction: column; gap: 16px; }
+  .why-item {
+    display: flex; gap: 18px; align-items: flex-start;
+    background: var(--card-bg); border: 1px solid var(--border);
+    padding: 22px 24px; transition: all 0.3s;
+  }
+  .why-item:hover { border-color: var(--cyan); transform: translateX(6px); }
+  .why-icon {
+    width: 44px; height: 44px; min-width: 44px;
+    background: linear-gradient(135deg, var(--blue), var(--cyan));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; clip-path: polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);
+  }
+  .why-item h4 {
+    font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1rem;
+    letter-spacing: 0.05em; margin-bottom: 4px;
+  }
+  .why-item p { color: var(--grey); font-size: 0.87rem; line-height: 1.6; }
+
+  .why-visual {
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* ── SOLUTIONS ── */
+  #solutions {
+    padding: 110px 5%;
+    background: var(--navy3);
+  }
+  .solutions-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .solution-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    padding: 32px; text-align: center;
+    transition: all 0.3s; position: relative; overflow: hidden;
+  }
+  .solution-card:hover { border-color: var(--cyan); box-shadow: var(--glow); transform: translateY(-4px); }
+  .solution-card h3 {
+    font-family: 'Orbitron', sans-serif; font-size: 0.85rem;
+    font-weight: 700; margin: 16px 0 10px; letter-spacing: 0.08em;
+  }
+  .solution-card p { color: var(--grey); font-size: 0.87rem; line-height: 1.65; }
+  .solution-icon { font-size: 2.4rem; display: block; margin: 0 auto 4px; }
+  .solution-card .tag {
+    display: inline-block; margin-top: 16px;
+    background: rgba(0,200,255,0.1); border: 1px solid rgba(0,200,255,0.25);
+    color: var(--cyan); padding: 4px 12px;
+    font-size: 0.72rem; letter-spacing: 0.15em; font-family: 'Rajdhani', sans-serif;
+    text-transform: uppercase;
+  }
+
+  /* ── BLOG ── */
+  #blog {
+    padding: 110px 5%;
+    background: var(--navy2);
+  }
+  .blog-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px; max-width: 1200px; margin: 0 auto;
+  }
+  .blog-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    overflow: hidden; transition: all 0.3s;
+  }
+  .blog-card:hover { border-color: var(--cyan); transform: translateY(-5px); box-shadow: var(--glow); }
+  .blog-img {
+    height: 180px; display: flex; align-items: center; justify-content: center;
+    font-size: 3.5rem; position: relative; overflow: hidden;
+  }
+  .blog-img-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(26,106,255,0.3), rgba(0,200,255,0.15));
+  }
+  .blog-body { padding: 24px; }
+  .blog-tag {
+    font-family: 'Rajdhani', sans-serif; font-size: 0.72rem;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan);
+    margin-bottom: 10px;
+  }
+  .blog-card h3 {
+    font-family: 'Orbitron', sans-serif; font-size: 0.88rem; font-weight: 600;
+    line-height: 1.5; margin-bottom: 12px;
+  }
+  .blog-card p { color: var(--grey); font-size: 0.87rem; line-height: 1.7; }
+  .blog-read {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 16px; color: var(--cyan); font-family: 'Rajdhani', sans-serif;
+    font-weight: 600; font-size: 0.82rem; letter-spacing: 0.12em;
+    text-transform: uppercase; cursor: pointer; transition: gap 0.3s;
+  }
+  .blog-read:hover { gap: 12px; }
+
+  /* ── CONTACT ── */
+  #contact {
+    padding: 110px 5%;
+    background: var(--navy);
+    position: relative;
+  }
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .contact-info h2 {
+    font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 1.8rem;
+    line-height: 1.3; margin-bottom: 20px;
+  }
+  .contact-info p {
+    color: var(--grey); line-height: 1.8; margin-bottom: 36px; font-size: 0.97rem;
+  }
+  .contact-items { display: flex; flex-direction: column; gap: 20px; }
+  .contact-item {
+    display: flex; gap: 16px; align-items: flex-start;
+  }
+  .c-icon {
+    width: 46px; height: 46px; min-width: 46px;
+    background: rgba(0,200,255,0.1); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+  }
+  .c-label { font-family: 'Rajdhani', sans-serif; font-size: 0.75rem; letter-spacing: 0.2em; color: var(--cyan); text-transform: uppercase; }
+  .c-val { font-size: 0.95rem; margin-top: 3px; }
+
+  .contact-form { display: flex; flex-direction: column; gap: 18px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+  .form-group label {
+    font-family: 'Rajdhani', sans-serif; font-size: 0.78rem;
+    letter-spacing: 0.15em; text-transform: uppercase; color: var(--grey);
+  }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    background: rgba(10,26,53,0.9); border: 1px solid var(--border);
+    color: var(--white); padding: 13px 16px;
+    font-family: 'Exo 2', sans-serif; font-size: 0.92rem;
+    transition: border-color 0.3s; outline: none;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus { border-color: var(--cyan); }
+  .form-group textarea { min-height: 120px; resize: vertical; }
+  .form-group select option { background: var(--navy2); }
+
+  .form-submit {
+    background: linear-gradient(135deg, var(--blue), var(--cyan));
+    color: #fff; border: none; padding: 16px 40px;
+    font-family: 'Rajdhani', sans-serif; font-weight: 700;
+    font-size: 1rem; letter-spacing: 0.15em; text-transform: uppercase;
+    cursor: pointer; clip-path: polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);
+    transition: all 0.3s; box-shadow: 0 0 25px rgba(0,200,255,0.25);
+    align-self: flex-start;
+  }
+  .form-submit:hover { box-shadow: 0 0 40px rgba(0,200,255,0.5); transform: translateY(-2px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy2); border-top: 1px solid var(--border);
+    padding: 60px 5% 30px; position: relative; z-index: 1;
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr;
+    gap: 40px; max-width: 1200px; margin: 0 auto 50px;
+  }
+  .footer-brand p {
+    color: var(--grey); font-size: 0.88rem; line-height: 1.8;
+    margin-top: 16px; max-width: 280px;
+  }
+  .footer-col h4 {
+    font-family: 'Orbitron', sans-serif; font-size: 0.72rem;
+    letter-spacing: 0.25em; text-transform: uppercase; color: var(--cyan);
+    margin-bottom: 18px;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul li a {
+    color: var(--grey); text-decoration: none; font-size: 0.88rem;
+    transition: color 0.3s; display: flex; align-items: center; gap: 8px;
+  }
+  .footer-col ul li a::before {
+    content: '›'; color: var(--cyan); font-size: 1rem;
+  }
+  .footer-col ul li a:hover { color: var(--cyan); }
+
+  .footer-bottom {
+    max-width: 1200px; margin: 0 auto;
+    border-top: 1px solid var(--border); padding-top: 24px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.8rem; color: var(--grey); flex-wrap: wrap; gap: 12px;
+  }
+  .gstin { font-family: 'Rajdhani', sans-serif; letter-spacing: 0.1em; }
+  .gstin span { color: var(--cyan); }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0; transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    .about-grid, .why-grid, .contact-grid { grid-template-columns: 1fr; }
+    .solutions-grid { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+    .hero-orb { display: none; }
+  }
+  @media (max-width: 600px) {
+    .solutions-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-canvas"></div>
+<div class="hex-grid"></div>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="#home" class="nav-logo">
+    <div class="logo-hex">
+      <svg viewBox="0 0 50 57.74" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M25 1.155L48.45 14.73V43.01L25 56.585L1.55 43.01V14.73Z" stroke="url(#hg)" stroke-width="2"/>
+        <path d="M25 9L40 17.5V34.5L25 43L10 34.5V17.5Z" fill="url(#hf)" opacity="0.3"/>
+        <line x1="25" y1="20" x2="25" y2="37" stroke="#00c8ff" stroke-width="1.5"/>
+        <line x1="18" y1="24" x2="25" y2="20" stroke="#00c8ff" stroke-width="1.5"/>
+        <line x1="32" y1="24" x2="25" y2="20" stroke="#1a6aff" stroke-width="1.5"/>
+        <circle cx="25" cy="20" r="2" fill="#00c8ff"/>
+        <circle cx="18" cy="24" r="1.5" fill="#1a6aff"/>
+        <circle cx="32" cy="24" r="1.5" fill="#1a6aff"/>
+        <circle cx="25" cy="37" r="2" fill="#00c8ff"/>
+        <defs>
+          <linearGradient id="hg" x1="0" y1="0" x2="50" y2="57.74">
+            <stop offset="0%" stop-color="#1a6aff"/>
+            <stop offset="100%" stop-color="#00c8ff"/>
+          </linearGradient>
+          <linearGradient id="hf" x1="0" y1="0" x2="50" y2="57.74">
+            <stop offset="0%" stop-color="#1a6aff"/>
+            <stop offset="100%" stop-color="#00c8ff"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+    <div>
+      <div class="nav-logo-text">NOVAHIVE <span>AI</span></div>
+      <div class="nav-logo-sub">Innovating Intelligence</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#solutions">Solutions</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Started</button>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="home">
+  <div class="hero-badge"><span class="badge-dot"></span> AI Automation & GenAI Solutions</div>
+  <h1 class="hero-title">
+    Empowering Businesses<br>
+    <span class="line2"><span class="accent">with AI Innovation</span></span>
+  </h1>
+  <p class="hero-sub">At Novahive AI Technology, we help businesses unlock the power of Artificial Intelligence, Automation, and Data-Driven Solutions to improve efficiency, reduce costs, and accelerate digital transformation.</p>
+  <div class="hero-btns">
+    <button class="btn-primary" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">Explore Services</button>
+    <button class="btn-secondary" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">Learn More</button>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">5+</div><div class="stat-label">AI Services</div></div>
+    <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Innovation Focus</div></div>
+    <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Possibilities</div></div>
+    <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">AI Systems</div></div>
+  </div>
+
+  <!-- Floating orb SVG -->
+  <div class="hero-orb">
+    <svg viewBox="0 0 380 380" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="orbGrad" cx="50%" cy="50%">
+          <stop offset="0%" stop-color="#1a6aff" stop-opacity="0.15"/>
+          <stop offset="100%" stop-color="#00c8ff" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="hexStroke" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#1a6aff"/>
+          <stop offset="100%" stop-color="#00c8ff"/>
+        </linearGradient>
+      </defs>
+      <circle cx="190" cy="190" r="170" fill="url(#orbGrad)"/>
+      <!-- Outer hex -->
+      <polygon points="190,30 330,110 330,270 190,350 50,270 50,110" fill="none" stroke="url(#hexStroke)" stroke-width="1.5" opacity="0.5"/>
+      <!-- Middle hex -->
+      <polygon points="190,75 295,133 295,247 190,305 85,247 85,133" fill="none" stroke="url(#hexStroke)" stroke-width="1" opacity="0.4"/>
+      <!-- Inner hex -->
+      <polygon points="190,120 260,160 260,220 190,260 120,220 120,160" fill="none" stroke="#00c8ff" stroke-width="1.5" opacity="0.6"/>
+      <!-- Circuit lines -->
+      <line x1="190" y1="120" x2="190" y2="75" stroke="#00c8ff" stroke-width="1" opacity="0.5"/>
+      <line x1="260" y1="160" x2="295" y2="133" stroke="#1a6aff" stroke-width="1" opacity="0.5"/>
+      <line x1="260" y1="220" x2="295" y2="247" stroke="#1a6aff" stroke-width="1" opacity="0.5"/>
+      <line x1="190" y1="260" x2="190" y2="305" stroke="#00c8ff" stroke-width="1" opacity="0.5"/>
+      <line x1="120" y1="220" x2="85" y2="247" stroke="#1a6aff" stroke-width="1" opacity="0.5"/>
+      <line x1="120" y1="160" x2="85" y2="133" stroke="#1a6aff" stroke-width="1" opacity="0.5"/>
+      <!-- Dots -->
+      <circle cx="190" cy="75" r="4" fill="#00c8ff" opacity="0.9"/>
+      <circle cx="295" cy="133" r="4" fill="#1a6aff" opacity="0.9"/>
+      <circle cx="295" cy="247" r="4" fill="#1a6aff" opacity="0.9"/>
+      <circle cx="190" cy="305" r="4" fill="#00c8ff" opacity="0.9"/>
+      <circle cx="85" cy="247" r="4" fill="#1a6aff" opacity="0.9"/>
+      <circle cx="85" cy="133" r="4" fill="#1a6aff" opacity="0.9"/>
+      <!-- Center N -->
+      <text x="190" y="205" font-family="Orbitron,sans-serif" font-size="52" font-weight="900" fill="url(#hexStroke)" text-anchor="middle" dominant-baseline="middle" opacity="0.7">N</text>
+      <!-- Glow circles -->
+      <circle cx="190" cy="75" r="8" fill="none" stroke="#00c8ff" stroke-width="1" opacity="0.3"/>
+      <circle cx="295" cy="133" r="8" fill="none" stroke="#1a6aff" stroke-width="1" opacity="0.3"/>
+      <circle cx="85" cy="133" r="8" fill="none" stroke="#1a6aff" stroke-width="1" opacity="0.3"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ── ABOUT ── -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-visual reveal">
+      <svg class="about-hex-ring" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="ring1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#1a6aff"/>
+            <stop offset="100%" stop-color="#00c8ff"/>
+          </linearGradient>
+        </defs>
+        <!-- Outer ring hexagons -->
+        <g opacity="0.6">
+          <polygon points="160,20 205,45 205,95 160,120 115,95 115,45" fill="none" stroke="url(#ring1)" stroke-width="1.5"/>
+          <polygon points="250,70 295,95 295,145 250,170 205,145 205,95" fill="none" stroke="url(#ring1)" stroke-width="1"/>
+          <polygon points="250,170 295,195 295,245 250,270 205,245 205,195" fill="none" stroke="url(#ring1)" stroke-width="1"/>
+          <polygon points="160,200 205,225 205,275 160,300 115,275 115,225" fill="none" stroke="url(#ring1)" stroke-width="1.5"/>
+          <polygon points="70,170 115,195 115,245 70,270 25,245 25,195" fill="none" stroke="url(#ring1)" stroke-width="1"/>
+          <polygon points="70,70 115,95 115,145 70,170 25,145 25,95" fill="none" stroke="url(#ring1)" stroke-width="1"/>
+        </g>
+        <!-- Center hex -->
+        <polygon points="160,95 205,120 205,170 160,195 115,170 115,120" fill="rgba(0,200,255,0.06)" stroke="#00c8ff" stroke-width="2"/>
+        <!-- Center icon -->
+        <text x="160" y="155" font-family="Orbitron,sans-serif" font-size="38" font-weight="900" fill="url(#ring1)" text-anchor="middle" dominant-baseline="middle">AI</text>
+        <!-- Dots at corners -->
+        <circle cx="160" cy="20" r="5" fill="#00c8ff"/>
+        <circle cx="250" cy="70" r="4" fill="#1a6aff"/>
+        <circle cx="250" cy="170" r="4" fill="#1a6aff"/>
+        <circle cx="160" cy="300" r="5" fill="#00c8ff"/>
+        <circle cx="70" cy="170" r="4" fill="#1a6aff"/>
+        <circle cx="70" cy="70" r="4" fill="#1a6aff"/>
+      </svg>
+    </div>
+    <div class="about-content reveal">
+      <h3>Who We Are</h3>
+      <h2>AI-Powered Solutions for the Digital Era</h2>
+      <p>Novahive AI Technology Private Limited is an innovative technology company focused on building AI-powered solutions and intelligent automation systems registered in Andhra Pradesh, India.</p>
+      <p>We combine Artificial Intelligence, Data Science, and Software Engineering to create solutions that help businesses operate smarter and faster in the digital era.</p>
+      <div class="about-vision-mission">
+        <div class="vm-card">
+          <h4>Our Vision</h4>
+          <p>To become a trusted technology partner for organizations seeking AI-driven transformation.</p>
+        </div>
+        <div class="vm-card">
+          <h4>Our Mission</h4>
+          <p>To deliver intelligent solutions that enhance productivity, decision-making, and innovation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ── -->
+<section id="services">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="section-header reveal">
+      <div class="section-tag">What We Offer</div>
+      <h2 class="section-title">Our <span>AI Services</span></h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-num">01</div>
+        <div class="service-icon">🤖</div>
+        <h3>AI Solutions</h3>
+        <p>We design and implement custom AI systems that automate decision-making and optimize business operations with cutting-edge machine learning models.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">02</div>
+        <div class="service-icon">✨</div>
+        <h3>Generative AI</h3>
+        <p>Development of AI chatbots, copilots, and intelligent assistants powered by modern GenAI technologies including LLMs and multimodal systems.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">03</div>
+        <div class="service-icon">⚙️</div>
+        <h3>Automation Services</h3>
+        <p>We help companies automate workflows and reduce manual work using AI and software automation, freeing teams to focus on strategic work.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">04</div>
+        <div class="service-icon">🧪</div>
+        <h3>Test Automation</h3>
+        <p>Building automation frameworks for enterprise applications to improve software quality and release speed using modern testing methodologies.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">05</div>
+        <div class="service-icon">📊</div>
+        <h3>Data Analytics</h3>
+        <p>Transforming raw data into powerful business insights using modern analytics and machine learning techniques for data-driven decisions.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">06</div>
+        <div class="service-icon">☁️</div>
+        <h3>Cloud AI Integration</h3>
+        <p>Seamlessly integrating AI capabilities with cloud infrastructure for scalable, reliable, and enterprise-grade intelligent applications.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY CHOOSE US ── -->
+<section id="why">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="section-header reveal">
+      <div class="section-tag">Our Advantage</div>
+      <h2 class="section-title">Why Choose <span>Novahive AI</span></h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="why-grid">
+      <div class="why-list">
+        <div class="why-item reveal">
+          <div class="why-icon">🎯</div>
+          <div>
+            <h4>AI-First Approach</h4>
+            <p>We build every solution with AI at the core, not as an afterthought — delivering smarter systems from the ground up.</p>
+          </div>
+        </div>
+        <div class="why-item reveal">
+          <div class="why-icon">⚡</div>
+          <div>
+            <h4>Automation Expertise</h4>
+            <p>Deep experience in intelligent process automation, enabling rapid transformation of manual workflows into automated pipelines.</p>
+          </div>
+        </div>
+        <div class="why-item reveal">
+          <div class="why-icon">🌐</div>
+          <div>
+            <h4>Scalable Cloud Solutions</h4>
+            <p>Solutions built to scale from startup to enterprise, deployed on modern cloud infrastructure for maximum reliability.</p>
+          </div>
+        </div>
+        <div class="why-item reveal">
+          <div class="why-icon">💡</div>
+          <div>
+            <h4>Innovation Culture</h4>
+            <p>Constantly exploring and adopting the latest AI research and technologies to keep clients ahead of the competition.</p>
+          </div>
+        </div>
+        <div class="why-item reveal">
+          <div class="why-icon">🤝</div>
+          <div>
+            <h4>Reliable Technology Partner</h4>
+            <p>Long-term partnerships with transparent communication, reliable delivery, and genuine commitment to client success.</p>
+          </div>
+        </div>
+      </div>
+      <div class="why-visual reveal">
+        <svg viewBox="0 0 340 340" style="width:320px;height:320px" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="wg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#1a6aff"/>
+              <stop offset="100%" stop-color="#00c8ff"/>
+            </linearGradient>
+          </defs>
+          <circle cx="170" cy="170" r="140" fill="none" stroke="rgba(0,200,255,0.08)" stroke-width="1"/>
+          <circle cx="170" cy="170" r="110" fill="none" stroke="rgba(0,200,255,0.12)" stroke-width="1"/>
+          <circle cx="170" cy="170" r="80" fill="none" stroke="rgba(0,200,255,0.18)" stroke-width="1"/>
+          <!-- Nodes -->
+          <circle cx="170" cy="30" r="8" fill="url(#wg)"/>
+          <circle cx="288" cy="100" r="6" fill="#1a6aff"/>
+          <circle cx="288" cy="240" r="6" fill="#1a6aff"/>
+          <circle cx="170" cy="310" r="8" fill="url(#wg)"/>
+          <circle cx="52" cy="240" r="6" fill="#1a6aff"/>
+          <circle cx="52" cy="100" r="6" fill="#1a6aff"/>
+          <!-- Lines from center -->
+          <line x1="170" y1="170" x2="170" y2="30" stroke="url(#wg)" stroke-width="1.5" opacity="0.6"/>
+          <line x1="170" y1="170" x2="288" y2="100" stroke="#1a6aff" stroke-width="1.5" opacity="0.6"/>
+          <line x1="170" y1="170" x2="288" y2="240" stroke="#1a6aff" stroke-width="1.5" opacity="0.6"/>
+          <line x1="170" y1="170" x2="170" y2="310" stroke="url(#wg)" stroke-width="1.5" opacity="0.6"/>
+          <line x1="170" y1="170" x2="52" y2="240" stroke="#1a6aff" stroke-width="1.5" opacity="0.6"/>
+          <line x1="170" y1="170" x2="52" y2="100" stroke="#1a6aff" stroke-width="1.5" opacity="0.6"/>
+          <!-- Center -->
+          <circle cx="170" cy="170" r="40" fill="rgba(0,200,255,0.06)" stroke="url(#wg)" stroke-width="2"/>
+          <text x="170" y="175" font-family="Orbitron,sans-serif" font-size="16" font-weight="900" fill="url(#wg)" text-anchor="middle" dominant-baseline="middle">NOVA</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SOLUTIONS ── -->
+<section id="solutions">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="section-header reveal">
+      <div class="section-tag">Products & Solutions</div>
+      <h2 class="section-title">Intelligent <span>Solutions</span></h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="solutions-grid">
+      <div class="solution-card reveal">
+        <span class="solution-icon">🧠</span>
+        <h3>AI Decision Engine</h3>
+        <p>Real-time decision automation platform powered by machine learning models trained on your business data.</p>
+        <span class="tag">Enterprise AI</span>
+      </div>
+      <div class="solution-card reveal">
+        <span class="solution-icon">💬</span>
+        <h3>GenAI Copilot</h3>
+        <p>Custom AI assistants and chatbots built on large language models, tailored to your industry and workflows.</p>
+        <span class="tag">GenAI</span>
+      </div>
+      <div class="solution-card reveal">
+        <span class="solution-icon">🔄</span>
+        <h3>Process Automation Suite</h3>
+        <p>End-to-end business process automation combining RPA, AI, and workflow orchestration tools.</p>
+        <span class="tag">Automation</span>
+      </div>
+      <div class="solution-card reveal">
+        <span class="solution-icon">📈</span>
+        <h3>Analytics Intelligence</h3>
+        <p>Advanced analytics dashboards and predictive models turning your raw data into strategic business insights.</p>
+        <span class="tag">Data & AI</span>
+      </div>
+      <div class="solution-card reveal">
+        <span class="solution-icon">🛡️</span>
+        <h3>Quality Assurance AI</h3>
+        <p>AI-powered test automation frameworks accelerating release cycles while maintaining enterprise quality standards.</p>
+        <span class="tag">Test Automation</span>
+      </div>
+      <div class="solution-card reveal">
+        <span class="solution-icon">🌐</span>
+        <h3>Digital Transformation</h3>
+        <p>Full-stack digital transformation consulting, from AI strategy to implementation and ongoing optimization.</p>
+        <span class="tag">Consulting</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BLOG ── -->
+<section id="blog">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="section-header reveal">
+      <div class="section-tag">Knowledge Hub</div>
+      <h2 class="section-title">AI <span>Insights</span> & Blog</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="blog-grid">
+      <div class="blog-card reveal">
+        <div class="blog-img">
+          <div class="blog-img-bg"></div>
+          <span style="position:relative;z-index:1;">🤖</span>
+        </div>
+        <div class="blog-body">
+          <div class="blog-tag">Generative AI</div>
+          <h3>How Generative AI is Transforming Enterprise Workflows in 2025</h3>
+          <p>From document automation to intelligent copilots, GenAI is reshaping how businesses operate at every level.</p>
+          <div class="blog-read">Read More <span>→</span></div>
+        </div>
+      </div>
+      <div class="blog-card reveal">
+        <div class="blog-img" style="background:linear-gradient(135deg,rgba(124,58,237,0.3),rgba(0,200,255,0.15))">
+          <div class="blog-img-bg" style="background:linear-gradient(135deg,rgba(124,58,237,0.2),transparent)"></div>
+          <span style="position:relative;z-index:1;">📊</span>
+        </div>
+        <div class="blog-body">
+          <div class="blog-tag">Data Analytics</div>
+          <h3>The Role of ML in Modern Business Intelligence Platforms</h3>
+          <p>Machine learning is bridging the gap between raw data and real business intelligence, enabling faster, smarter decisions.</p>
+          <div class="blog-read">Read More <span>→</span></div>
+        </div>
+      </div>
+      <div class="blog-card reveal">
+        <div class="blog-img" style="background:linear-gradient(135deg,rgba(0,200,255,0.2),rgba(26,106,255,0.1))">
+          <div class="blog-img-bg" style="background:linear-gradient(135deg,rgba(0,229,255,0.15),transparent)"></div>
+          <span style="position:relative;z-index:1;">⚙️</span>
+        </div>
+        <div class="blog-body">
+          <div class="blog-tag">Automation</div>
+          <h3>Test Automation in the Age of AI: Beyond Traditional Scripting</h3>
+          <p>How AI-enhanced test automation is delivering faster releases and higher quality in enterprise software projects.</p>
+          <div class="blog-read">Read More <span>→</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="section-header reveal">
+      <div class="section-tag">Get In Touch</div>
+      <h2 class="section-title">Let's Build <span>Together</span></h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <h2>Ready to Transform Your Business with AI?</h2>
+        <p>Reach out to discuss how Novahive AI Technology can help you automate, innovate, and grow. We're based in Andhra Pradesh and serve clients across India and globally.</p>
+        <div class="contact-items">
+          <div class="contact-item">
+            <div class="c-icon">📍</div>
+            <div>
+              <div class="c-label">Address</div>
+              <div class="c-val">Andhra Pradesh, India</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="c-icon">✉️</div>
+            <div>
+              <div class="c-label">Email</div>
+              <div class="c-val">info@novahiveai.com</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="c-icon">📞</div>
+            <div>
+              <div class="c-label">Phone</div>
+              <div class="c-val">+91 XXXXX XXXXX</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="c-icon">🏢</div>
+            <div>
+              <div class="c-label">GSTIN</div>
+              <div class="c-val" style="font-family:'Rajdhani',sans-serif;letter-spacing:0.08em;">37AAKCN1836A1ZO</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Full Name</label>
+              <input type="text" placeholder="Your Name">
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" placeholder="your@email.com">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Phone</label>
+              <input type="tel" placeholder="+91 XXXXX XXXXX">
+            </div>
+            <div class="form-group">
+              <label>Company</label>
+              <input type="text" placeholder="Your Company">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Service Interest</label>
+            <select>
+              <option value="">Select a Service</option>
+              <option>AI Solutions</option>
+              <option>Generative AI / Chatbot</option>
+              <option>Automation Services</option>
+              <option>Test Automation</option>
+              <option>Data Analytics</option>
+              <option>Digital Transformation</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea placeholder="Tell us about your project or requirements..."></textarea>
+          </div>
+          <button class="form-submit" onclick="alert('Thank you! We will reach out to you shortly.')">Send Message →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <svg width="36" height="42" viewBox="0 0 50 57.74" fill="none">
+          <path d="M25 1.155L48.45 14.73V43.01L25 56.585L1.55 43.01V14.73Z" stroke="url(#fg)" stroke-width="2"/>
+          <text x="25" y="32" font-family="Orbitron" font-size="16" font-weight="900" fill="url(#fg)" text-anchor="middle" dominant-baseline="middle">N</text>
+          <defs>
+            <linearGradient id="fg" x1="0" y1="0" x2="50" y2="57.74">
+              <stop offset="0%" stop-color="#1a6aff"/>
+              <stop offset="100%" stop-color="#00c8ff"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div>
+          <div style="font-family:'Orbitron',sans-serif;font-weight:700;font-size:0.95rem;">NOVAHIVE <span style="color:var(--cyan)">AI</span></div>
+          <div style="font-size:0.6rem;color:var(--grey);letter-spacing:0.2em;">INNOVATING INTELLIGENCE</div>
+        </div>
+      </div>
+      <p>Novahive AI Technology Private Limited — building intelligent systems that help organizations work smarter, scale faster, and innovate continuously.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#why">Why Choose Us</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">AI Solutions</a></li>
+        <li><a href="#services">Generative AI</a></li>
+        <li><a href="#services">Automation</a></li>
+        <li><a href="#services">Test Automation</a></li>
+        <li><a href="#services">Data Analytics</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <ul>
+        <li><a href="#">LinkedIn</a></li>
+        <li><a href="#">Startup India</a></li>
+        <li><a href="#">info@novahiveai.com</a></li>
+        <li><a href="#">Andhra Pradesh, India</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2025 Novahive AI Technology Private Limited. All rights reserved.</div>
+    <div class="gstin">GSTIN: <span>37AAKCN1836A1ZO</span></div>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Nav active state
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--cyan)' : '';
+    });
+  });
+</script>
+</body>
+</html>
